@@ -1,5 +1,5 @@
-import pandas as pd
 import os
+import pandas as pd
 from dotenv import load_dotenv
 from pymongo import MongoClient
 
@@ -27,4 +27,3 @@ collection.insert_many(data_dict)
 
 # Confirm insertion
 print("Data inserted successfully")
-
