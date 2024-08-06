@@ -23,7 +23,7 @@ setup(
     version = __version__,
     license = 'MIT',
     url = 'https://github.com/minich-code/rulbattery',
-    download_url = f'https://github.com/minich-code/rulbattery',
+    download_url = 'https://github.com/minich-code/rulbattery',
     description='This is a project to Predict Battery Remaining Useful Life',
     author = 'Western',
     author_email = 'minichworks@gmail.com',
@@ -31,7 +31,3 @@ setup(
     install_requires=get_requirements('requirements.txt')
 
 )
-
-
-                                   
-
