@@ -3,7 +3,7 @@ artifacts_root: artifacts
 
 data_ingestion:
   root_dir: artifacts/data_ingestion 
-  mongo_uri: mongodb+srv://Minich:Mydatabase.456@minich-data-repository.gzlkk1s.mongodb.net/
+  mongo_uri: ${MONGODB_URI}
   database_name: battery_experiments
   collection_name: battery_rul
 
@@ -17,14 +17,14 @@ data_transformation:
   root_dir: artifacts/data_transformation
   data_path: artifacts/data_ingestion/battery_rul.csv
   numerical_cols:
-    - 'cycle_index'            
-    - 'discharge_time_s'       
-    - 'decrement_3_6_3_4v_s'   
+    - cycle_index
+    - 'discharge_time_s'
+    - 'decrement_3_6_3_4v_s'
     - 'max_voltage_discharge_v'
-    - 'min_voltage_charge_v'   
-    - 'time_at_4_15v_s'        
+    - 'min_voltage_charge_v'
+    - 'time_at_4_15v_s' 
     - 'time_constant_current_s'
-    - 'charging_time_s'       
+    - 'charging_time_s'
                  
   categorical_cols: []
 

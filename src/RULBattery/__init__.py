@@ -1,7 +1,7 @@
-import logging 
-import os 
-import sys 
-from datetime import datetime 
+import logging
+import os
+import sys
+from datetime import datetime
 
 # Define the logfile name using the current date and time 
 log_file_name = f"{datetime.now().strftime('%m_%d_%y_%H_%M_%S')}.log"
@@ -18,7 +18,7 @@ logging.basicConfig(
     format = "[%(asctime)s ] %(lineno)d %(name)s - %(levelname)s - %(message)s",
     level = logging.INFO,
     handlers=[
-        logging.FileHandler(log_file_path), # Output logs to the file 
+        logging.FileHandler(log_file_path), # Output logs to the file
         logging.StreamHandler(sys.stdout) # Output logs in the terminal/console
     ]
 )

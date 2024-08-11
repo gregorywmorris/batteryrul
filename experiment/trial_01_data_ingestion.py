@@ -1,8 +1,8 @@
 # Import libraries 
-from dataclasses import dataclass 
+from dataclasses import dataclass
 from pathlib import Path
 import pymongo
-from pymongo import MongoClient 
+from pymongo import MongoClient
 import pandas as pd
 import os 
 
