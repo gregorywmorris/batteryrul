@@ -5,13 +5,16 @@ import pymongo
 from pymongo import MongoClient
 import pandas as pd
 import os 
+from dotenv import load_dotenv
 
 from src.RULBattery.utils.commons import read_yaml, create_directories
 from src.RULBattery.constants import *
 from src.RULBattery import logging 
 
-# Entity 
+# Load environment variables from .env file
+load_dotenv()
 
+# Entity 
 @dataclass
 class DataIngestionConfig:
     root_dir: Path
@@ -42,18 +45,29 @@ class ConfigurationManager:
         # Get data ingestion section from config
         config = self.config.data_ingestion
 
+        # Load MongoDB URI from environment variable
+        mongo_uri = os.getenv("MONGODB_URI")
+        # print(f"Loaded MONGODB_URI from .env: {mongo_uri}")  # Debug print
+
+        # Replace the placeholder if found in the YAML config
+        if config['mongo_uri'] == '${MONGODB_URI}' and mongo_uri:
+            config['mongo_uri'] = mongo_uri
+            # print(f"Replaced mongo_uri in config: {config['mongo_uri']}")  # Debug print
+
         # Create DataIngestionConfig object
-        create_directories([config.root_dir])
+        create_directories([config['root_dir']])
 
         # Create and return DataIngestionConfig object
         data_ingestion_config = DataIngestionConfig(
-            root_dir=config.root_dir,
-            mongo_uri=config.mongo_uri,
-            database_name=config.database_name,
-            collection_name=config.collection_name,
+            root_dir=config['root_dir'],
+            mongo_uri=config['mongo_uri'],
+            database_name=config['database_name'],
+            collection_name=config['collection_name'],
         )
 
         return data_ingestion_config
+
+
 
 # Data ingestion component class 
 class DataIngestion:
@@ -72,7 +86,6 @@ class DataIngestion:
 
         if "_id" in df.columns:
             df = df.drop(columns=["_id"])
-
 
         # Save DataFrame to a file (optional, based on your needs)
         df.to_csv(os.path.join(self.config.root_dir, 'battery_rul.csv'), index=False)
