@@ -7,7 +7,7 @@ from pymongo import MongoClient
 load_dotenv()
 
 # Access the MongoDB password from the environment variable
-mongodb_password = os.getenv('MONGODB_PW')
+mongodb_uri = os.getenv('MONGODB_URI')
 
 # Load the CSV file into a DataFrame
 df = pd.read_csv('data/Battery_RUL.csv')
@@ -16,7 +16,7 @@ df = pd.read_csv('data/Battery_RUL.csv')
 data_dict = df.to_dict(orient='records')
 
 # Create a MongoDB client
-client = MongoClient(f'mongodb+srv://blackitalian:{mongodb_password}@freetier.c43u4hi.mongodb.net/')
+client = MongoClient(f'{mongodb_uri}')
 
 # Specify the database and collection
 db = client['battery_experiments']

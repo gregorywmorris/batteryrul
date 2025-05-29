@@ -18,14 +18,14 @@ data_transformation:
   data_path: artifacts/data_ingestion/battery_rul.csv
   numerical_cols:
     - cycle_index
-    - 'discharge_time_s'
-    - 'decrement_3_6_3_4v_s'
-    - 'max_voltage_discharge_v'
-    - 'min_voltage_charge_v'
-    - 'time_at_4_15v_s' 
-    - 'time_constant_current_s'
-    - 'charging_time_s'
-                 
+    - discharge_time_s
+    - decrement_3_6_3_4v_s
+    - max_voltage_discharge_v
+    - min_voltage_charge_v
+    - time_at_4_15v_s
+    - time_constant_current_s
+    - charging_time_s
+
   categorical_cols: []
 
 model_trainer:

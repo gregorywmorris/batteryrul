@@ -1,10 +1,9 @@
-# Import libraries 
+# Import libraries
 from dataclasses import dataclass
 from pathlib import Path
-import pymongo
 from pymongo import MongoClient
 import pandas as pd
-import os 
+import os
 from dotenv import load_dotenv
 
 from src.RULBattery.utils.commons import read_yaml, create_directories
@@ -14,7 +13,7 @@ from src.RULBattery import logging
 # Load environment variables from .env file
 load_dotenv()
 
-# Entity 
+# Entity
 @dataclass
 class DataIngestionConfig:
     root_dir: Path
@@ -77,7 +76,7 @@ class DataIngestion:
     # Method to fetch data from MongoDB
     def import_data_from_mongodb(self):
         # Connect to MongoDB
-        client = pymongo.MongoClient(self.config.mongo_uri)
+        client = MongoClient(self.config.mongo_uri)
         db = client[self.config.database_name]
         collection = db[self.config.collection_name]
 
